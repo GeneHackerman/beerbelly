@@ -41,7 +41,7 @@ const SavedDrinks = () => {
     }
 
     try {
-      const response = await deleteDrink(bookId, token);
+      const response = await deleteDrink(drinkId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -65,7 +65,7 @@ const SavedDrinks = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing saved drinks!</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -75,7 +75,7 @@ const SavedDrinks = () => {
             : 'You have no saved drinks!'}
         </h2>
         <CardColumns>
-          {userData.savedDrinks.map((book) => {
+          {userData.savedDrinks.map((drink) => {
             return (
               <Card key={drink.drinkId} border='dark'>
                 {drink.image ? <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' /> : null}

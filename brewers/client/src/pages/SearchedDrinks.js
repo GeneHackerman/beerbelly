@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
-import { saveDrink, searchGoogleBooks } from '../utils/API';  // MAKE CHANGES IN searchGoogleBooks
-import { saveDrinkIds, getSavedDRinkIds } from '../utils/localStorage';
+import { saveDrink, searchDrinks } from '../utils/API';  
+import { saveDrinkIds, getSavedDrinkIds } from '../utils/localStorage';
 const SearchDrinks = () => {
+ 
   // create state for holding returned google api data
   const [searchedDrinks, setSearchedDrinks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  // create state to hold saved bookId values
-  const [savedDrinkIds, setSavedDrinkIds] = useState(getSavedBookIds());
+  // create state to hold saved drinkId values
+  const [savedDrinkIds, setSavedDrinkIds] = useState(getSavedDrinkIds());
 
   // set up useEffect hook to save `savedDrinkIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
-    return () => saveBookIds(savedBookIds);
+    return () => saveDrinkIds(savedDrinkIds);
   });
 
-  // create method to search for books and set state on form submit
+  // create method to search for drinks and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -27,30 +28,30 @@ const SearchDrinks = () => {
     }
 
     try {
-      const response = await searchGoogleBooks(searchInput); // MAKE CHANGES IN searchGoogleBooks
+      const response = await searchDrinks(searchInput); 
       if (!response.ok) {
         throw new Error('Ops! Something went wrong!');
       }
 
       const { items } = await response.json();
-      const drinkData = items.map((book) => ({
+      const drinkData = items.map((drink) => ({
         drinkId: drink.id,
-        authors: driink.volumeInfo.authors || ['No drinks to display'],
+        authors: drink.volumeInfo.authors || ['No drinks to display'],
         title: drink.volumeInfo.title,
         description: drink.volumeInfo.description,
         image: drink.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
-      setSearchedDrinks(bookData);
+      setSearchedDrinks(drinkData);
       setSearchInput('');
     } catch (err) {
       console.error(err);
     }
   };
 
-  // create function to handle saving a book to our database
+ 
   const handleSaveDrink = async (drinkId) => {
-    // find the book in `searchedDrinks` state by the matching id
+
     const drinkToSave = searchedDrinks.find((drink) => drink.drinkId === drinkId);
 
     // get token
@@ -66,8 +67,8 @@ const SearchDrinks = () => {
         throw new Error('Ops! Something went wrong!');
       }
 
-      // if book successfully saves to user's account, save drink id to state
-      setSavedSDrinkIds([...savedDrinkIds, drinkToSave.drinkId]);
+      // if drink successfully saves to user's account, save drink id to state
+      setSavedDrinkIds([...savedDrinkIds, drinkToSave.drinkId]);
     } catch (err) {
       console.error(err);
     }
@@ -87,7 +88,7 @@ const SearchDrinks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a book'
+                  placeholder='Search for a drink'
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -102,7 +103,7 @@ const SearchDrinks = () => {
 
       <Container>
         <h2>
-          {searchedBooks.length
+          {searchDrinks.length
             ? `Viewing ${searchedDrinks.length} results:`
             : 'Search for a book to begin'}
         </h2>

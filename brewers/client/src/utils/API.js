@@ -27,20 +27,20 @@ export const loginUser = (userData) => {
   });
 };
 
-export const saveBook = (bookData, token) => {   // save drink data for a logged in user
+export const saveDrink = (drinkData, token) => {   
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(bookData),
+    body: JSON.stringify(drinkData),
   });
 };
 
 
-export const deleteBook = (bookId, token) => {  // remove saved drink data for a logged in user
-  return fetch(`/api/users/books/${bookId}`, {
+export const deleteDrink = (drinkId, token) => {  
+  return fetch(`/api/users/books/${drinkId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
@@ -49,6 +49,6 @@ export const deleteBook = (bookId, token) => {  // remove saved drink data for a
 };
 
 
-export const searchGoogleBooks = (query) => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`); // make a search to " xyz........"  api
+export const searchBrewery = (query) => {
+  return fetch(`https://api.openbrewerydb.org/breweries?by_city=${query}`); // make a search to " xyz........"  api
 };
