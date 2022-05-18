@@ -13,8 +13,8 @@
      - MIT, 2022
 
     # Contributers:
-        - Rafael Arias | Github Repo: 
-        - Cooper Smith | Github Repo:
-        - Mariana Marques | Github Repo:
+        - Rafael Arias | Github Repo: https://github.com/GeneHackerman 
+        - Cooper Smith | Github Repo: https://github.com/cssmith431
+        - Mariana Marques | Github Repo: https://github.com/mmvrstudio
 
     #Test Push
