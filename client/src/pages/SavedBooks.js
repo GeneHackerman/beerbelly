@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteDrink } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
-
+import { removeDrinkId } from '../utils/localStorage';
 const SavedDrinks = () => {
   const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -20,7 +18,6 @@ const SavedDrinks = () => {
         }
 
         const response = await getMe(token);
-
         if (!response.ok) {
           throw new Error('something went wrong!');
         }
@@ -35,7 +32,7 @@ const SavedDrinks = () => {
     getUserData();
   }, [userDataLength]);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  // create function that accepts the drinks's mongo _id value as param and deletes the drink from the database
   const handleDeleteDrink = async (drinkId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -52,7 +49,7 @@ const SavedDrinks = () => {
 
       const updatedUser = await response.json();
       setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
+      // upon success, remove drink's id from localStorage
       removeDrinkId(drinkId);
     } catch (err) {
       console.error(err);
@@ -73,7 +70,7 @@ const SavedDrinks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
+          {userData.savedDrinks.length
             ? `Viewing ${userData.savedDrinks.length} saved ${userData.savedDrinks.length === 1 ? 'drink' : 'drinks'}:`
             : 'You have no saved drinks!'}
         </h2>
@@ -83,7 +80,7 @@ const SavedDrinks = () => {
               <Card key={drink.drinkId} border='dark'>
                 {drink.image ? <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' /> : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
+                  <Card.Title>{driink.title}</Card.Title>
                   <p className='small'>Authors: {drink.authors}</p>
                   <Card.Text>{drink.description}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteDrink(drink.drinkId)}>
