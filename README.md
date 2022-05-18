@@ -9,6 +9,6 @@
     # License:
 
     # Contributers:
-        - Rafael Arias
-        - Cooper Smith
-        - Mariana Marques
+        - Rafael Arias | Github Repo: 
+        - Cooper Smith | Github Repo:
+        - Mariana Marques | Github Repo:
