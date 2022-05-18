@@ -7,6 +7,7 @@
     # Installation:
 
     # License:
+     - MIT
 
     # Contributers:
         - Rafael Arias | Github Repo: 
