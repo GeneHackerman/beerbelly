@@ -7,7 +7,7 @@
     # Installation:
 
     # License:
-     - MIT
+     - MIT, 2022
 
     # Contributers:
         - Rafael Arias | Github Repo: 
