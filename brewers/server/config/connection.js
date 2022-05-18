@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks', {  // REPLACE TH API
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks', {  // API MUST BE REPLACED
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
