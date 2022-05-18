@@ -1,9 +1,11 @@
 # beerbelly
 
-# Description:
+    # Deployed Application (link):
 
-# Installation:
+    # Description:
 
-# License:
+    # Installation:
 
-# Contributers:
+    # License:
+
+    # Contributers:
