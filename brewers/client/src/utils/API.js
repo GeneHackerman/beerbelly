@@ -27,8 +27,7 @@ export const loginUser = (userData) => {
   });
 };
 
-// save book data for a logged in user
-export const saveBook = (bookData, token) => {
+export const saveBook = (bookData, token) => {   // save drink data for a logged in user
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
@@ -39,8 +38,8 @@ export const saveBook = (bookData, token) => {
   });
 };
 
-// remove saved book data for a logged in user
-export const deleteBook = (bookId, token) => {
+
+export const deleteBook = (bookId, token) => {  // remove saved drink data for a logged in user
   return fetch(`/api/users/books/${bookId}`, {
     method: 'DELETE',
     headers: {
@@ -49,8 +48,7 @@ export const deleteBook = (bookId, token) => {
   });
 };
 
-// make a search to google books api
-// https://www.googleapis.com/books/v1/volumes?q=harry+potter
+
 export const searchGoogleBooks = (query) => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`); // make a search to " xyz........"  api
 };
