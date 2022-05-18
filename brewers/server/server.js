@@ -1,6 +1,14 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
+
+
+const { ApolloServer } = require("apollo-server-express");   // Mariana added this
+const { typeDefs, resolvers } = require("./schemas");  // Mariana added this
+const { authMiddleware } = require("./utils/auth");  // Mariana added this
+
+
+
 const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
