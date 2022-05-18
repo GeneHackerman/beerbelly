@@ -16,7 +16,7 @@
     # License:
      - MIT, 2022
 
-    # Contributers:
+    # Contributors:
         - Rafael Arias | Github Repo: https://github.com/GeneHackerman 
         - Cooper Smith | Github Repo: https://github.com/cssmith431
         - Mariana Marques | Github Repo: https://github.com/mmvrstudio
