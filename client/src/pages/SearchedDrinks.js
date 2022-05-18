@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { saveDrink, searchGoogleBooks } from '../utils/API';  // MAKE CHANGES IN searchGoogleBooks
-import { saveDrinkIds, getSavedBookIds } from '../utils/localStorage';
-const SearchBooks = () => {
+import { saveDrinkIds, getSavedDRinkIds } from '../utils/localStorage';
+const SearchDrinks = () => {
   // create state for holding returned google api data
   const [searchedDrinks, setSearchedDrinks] = useState([]);
   // create state for holding our search field data
@@ -12,7 +12,7 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedDrinkIds, setSavedDrinkIds] = useState(getSavedBookIds());
 
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // set up useEffect hook to save `savedDrinkIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
@@ -41,7 +41,7 @@ const SearchBooks = () => {
         image: drink.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
-      setSearchedBooks(bookData);
+      setSearchedDrinks(bookData);
       setSearchInput('');
     } catch (err) {
       console.error(err);
@@ -49,9 +49,9 @@ const SearchBooks = () => {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveBook = async (bookId) => {
-    // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+  const handleSaveDrink = async (drinkId) => {
+    // find the book in `searchedDrinks` state by the matching id
+    const drinkToSave = searchedDrinks.find((drink) => drink.drinkId === drinkId);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -61,7 +61,7 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await saveBook(drinkToSave, token);
+      const response = await saveDrink(drinkToSave, token);
       if (!response.ok) {
         throw new Error('Ops! Something went wrong!');
       }
@@ -103,28 +103,28 @@ const SearchBooks = () => {
       <Container>
         <h2>
           {searchedBooks.length
-            ? `Viewing ${searchedBooks.length} results:`
+            ? `Viewing ${searchedDrinks.length} results:`
             : 'Search for a book to begin'}
         </h2>
         <CardColumns>
-          {searchedBooks.map((book) => {
+          {searchedDrinks.map((book) => {
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? (
-                  <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
+              <Card key={drink.drinkId} border='dark'>
+                {drink.image ? (
+                  <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Title>{drink.title}</Card.Title>
+                  <p className='small'>Authors: {drink.authors}</p>
+                  <Card.Text>{drink.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                      disabled={savedDrinkIds?.some((savedDrinkId) => savedDrinkId === drink.drinkId)}
                       className='btn-block btn-info'
-                      onClick={() => handleSaveBook(book.bookId)}>
-                      {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
-                        ? 'This book has already been saved!'
-                        : 'Save this Book!'}
+                      onClick={() => handleSaveDrink(drink.drinkId)}>
+                      {savedDrinkIds?.some((savedDrinkId) => savedDrinkId === drink.drinkId)
+                        ? 'This Drink has already been saved to your Favorite Drinks list!'
+                        : 'Save this Drink to your favorites!'}
                     </Button>
                   )}
                 </Card.Body>
@@ -137,4 +137,4 @@ const SearchBooks = () => {
   );
 };
 
-export default SearchBooks;
+export default SearchDrinks;
