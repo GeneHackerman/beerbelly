@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
-import { saveDrink, searchDrinks } from '../utils/API';  
-import { saveDrinkIds, getSavedDrinkIds } from '../utils/localStorage';
-const SearchDrinks = () => {
+import { saveBrewery, searchBreweries } from '../utils/API';  
+import { saveBreweryIds, getSavedBreweryIds } from '../utils/localStorage';
+const SearchBreweries = () => {
  
   // create state for holding returned google api data
-  const [searchedDrinks, setSearchedDrinks] = useState([]);
+  const [searchedBreweries, setSearchedBreweries] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
   // create state to hold saved drinkId values
-  const [savedDrinkIds, setSavedDrinkIds] = useState(getSavedDrinkIds());
+  const [savedBreweryIds, setSavedBreweryIds] = useState(getSavedBreweryIds());
 
   // set up useEffect hook to save `savedDrinkIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
-    return () => saveDrinkIds(savedDrinkIds);
+    return () => saveBreweryIds(savedBreweryIds);
   });
 
   // create method to search for drinks and set state on form submit
@@ -28,21 +28,21 @@ const SearchDrinks = () => {
     }
 
     try {
-      const response = await searchDrinks(searchInput); 
+      const response = await searchBreweries(searchInput); 
       if (!response.ok) {
         throw new Error('Ops! Something went wrong!');
       }
 
       const { items } = await response.json();
-      const drinkData = items.map((drink) => ({
-        drinkId: drink.id,
-        authors: drink.volumeInfo.authors || ['No drinks to display'],
-        title: drink.volumeInfo.title,
-        description: drink.volumeInfo.description,
+      const breweryData = items.map((brewery) => ({
+        breweryId: brewery.id,
+        authors: brewery.volumeInfo.authors || ['No Breweries to display'],
+        title: brewery.volumeInfo.title,
+        description: brewery.volumeInfo.description,
         image: drink.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
-      setSearchedDrinks(drinkData);
+      setSearchedBreweries(breweryData);
       setSearchInput('');
     } catch (err) {
       console.error(err);
@@ -50,9 +50,9 @@ const SearchDrinks = () => {
   };
 
  
-  const handleSaveDrink = async (drinkId) => {
+  const handleSaveBrewery = async (breweryId) => {
 
-    const drinkToSave = searchedDrinks.find((drink) => drink.drinkId === drinkId);
+    const breweryToSave = searchedBrewery.find((brewery) => brewery.breweryId === breweryId);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -62,13 +62,13 @@ const SearchDrinks = () => {
     }
 
     try {
-      const response = await saveDrink(drinkToSave, token);
+      const response = await saveBrewery(breweryToSave, token);
       if (!response.ok) {
         throw new Error('Ops! Something went wrong!');
       }
 
       // if drink successfully saves to user's account, save drink id to state
-      setSavedDrinkIds([...savedDrinkIds, drinkToSave.drinkId]);
+      setSavedBreweryIds([...savedBreweryIds, breweryToSave.breweryId]);
     } catch (err) {
       console.error(err);
     }
@@ -78,7 +78,7 @@ const SearchDrinks = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Search for Drinks!</h1>
+          <h1>Search for Breweries!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -88,7 +88,7 @@ const SearchDrinks = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a drink'
+                  placeholder='Search for a Brewery'
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -104,28 +104,28 @@ const SearchDrinks = () => {
       <Container>
         <h2>
           {searchDrinks.length
-            ? `Viewing ${searchedDrinks.length} results:`
-            : 'Search for a book to begin'}
+            ? `Viewing ${searchedBreweries.length} results:`
+            : 'Search for a Brewery to begin'}
         </h2>
         <CardColumns>
-          {searchedDrinks.map((book) => {
+          {searchedBreweries.map((brewery) => {
             return (
-              <Card key={drink.drinkId} border='dark'>
-                {drink.image ? (
-                  <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' />
+              <Card key={brewery.breweryId} border='dark'>
+                {brewery.image ? (
+                  <Card.Img src={drink.image} alt={`The cover for ${brewery.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{drink.title}</Card.Title>
-                  <p className='small'>Authors: {drink.authors}</p>
-                  <Card.Text>{drink.description}</Card.Text>
+                  <Card.Title>{brewery.title}</Card.Title>
+                  <p className='small'>Authors: {brewery.authors}</p>
+                  <Card.Text>{brewery.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedDrinkIds?.some((savedDrinkId) => savedDrinkId === drink.drinkId)}
+                      disabled={savedBreweryIds?.some((savedBreweryId) => savedBreweryId === brewery.breweryId)}
                       className='btn-block btn-info'
-                      onClick={() => handleSaveDrink(drink.drinkId)}>
-                      {savedDrinkIds?.some((savedDrinkId) => savedDrinkId === drink.drinkId)
-                        ? 'This Drink has already been saved to your Favorite Drinks list!'
-                        : 'Save this Drink to your favorites!'}
+                      onClick={() => handleSaveBrewery(brewery.breweryId)}>
+                      {savedBreweryIds?.some((savedBreweryId) => savedBreweryId === brewery.breweryId)
+                        ? 'This Brewery has already been saved to your Favorite Breweries!'
+                        : 'Save this Brewery to your favorites!'}
                     </Button>
                   )}
                 </Card.Body>
@@ -138,5 +138,5 @@ const SearchDrinks = () => {
   );
 };
 
-export default SearchDrinks;
+export default SearchBreweries;
 
