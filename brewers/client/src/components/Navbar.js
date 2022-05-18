@@ -4,11 +4,8 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
-
 const AppNavbar = () => {
-  // set modal display state
-  const [showModal, setShowModal] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);  // set modal display state
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
