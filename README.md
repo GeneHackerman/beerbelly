@@ -8,6 +8,10 @@
     - The users are able to sign up and save drinks in their favorite drink list.
 
     # Installation:
+    To run it on your local machine:
+    - npx create-react-app
+    - npx start
+    - Go to https://localhost:3001
 
     # License:
      - MIT, 2022
