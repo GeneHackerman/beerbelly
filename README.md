@@ -9,3 +9,6 @@
     # License:
 
     # Contributers:
+        - Rafael Arias
+        - Cooper Smith
+        - Mariana Marques
