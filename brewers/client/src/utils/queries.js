@@ -8,6 +8,10 @@ export const GET_ME = gql `
             email
             savedDrinks {
                 drinkId
+                title
+                description
+                image
+                link
             }
         }
     }

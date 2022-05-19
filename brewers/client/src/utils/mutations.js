@@ -7,6 +7,15 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        email
+        drinkCount
+        savedDrinks {
+            drinkId
+            title
+            description
+            image
+            link
+        }
       }
     }
   }
@@ -19,8 +28,51 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        email
+        drinkCount
+        savedDrinks {
+            drinkId
+            title
+            description
+            image
+            link
+        }
       }
     }
   }
 `;
+
+export const SAVE_DRINK = gql `
+  mutation saveDrink ($input: drinkInput!) {
+      saveDrink(input: $input) {
+          _id
+          username
+          email
+          savedDrinks {
+              drinkId
+              image
+              description
+              link
+          }
+      }
+  }
+
+`;
+
+export const REMOVE_DRINK = gql `
+  mutation removeDrink ($drinkId: String!) {
+      removeDrink(drinkId: $rinkId) {
+          _id
+          username
+          email
+          drinkCoount
+          savedDrinks {
+              drinkId
+              image
+              description
+              link
+          }
+      }
+  }
+`
 
