@@ -27,7 +27,7 @@ export const loginUser = (userData) => {
   });
 };
 
-export const saveDrink = (drinkData, token) => {   
+export const saveBrewery = (breweryData, token) => {   
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
@@ -39,8 +39,8 @@ export const saveDrink = (drinkData, token) => {
 };
 
 
-export const deleteDrink = (drinkId, token) => {  
-  return fetch(`/api/users/books/${drinkId}`, {
+export const deleteBrewery = (breweryId, token) => {  
+  return fetch(`/api/users/breweries/${breweryId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,

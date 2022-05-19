@@ -32,7 +32,12 @@ const SavedDrinks = () => {
     getUserData();
   }, [userDataLength]);
 
+<<<<<<< HEAD:brewers/client/src/pages/SavedDrinks.js
   const handleDeleteDrink = async (drinkId) => {
+=======
+  // create function that accepts the brewery's mongo _id value as param and deletes the brewery from the database
+  const handleDeleteBrewery = async (breweryId) => {
+>>>>>>> c80978a5865f979ba8df28698a2290472abdad1a:brewers/client/src/pages/SavedBreweries.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -40,7 +45,7 @@ const SavedDrinks = () => {
     }
 
     try {
-      const response = await deleteDrink(drinkId, token);
+      const response = await deleteBrewery(breweryId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -48,8 +53,13 @@ const SavedDrinks = () => {
 
       const updatedUser = await response.json();
       setUserData(updatedUser);
+<<<<<<< HEAD:brewers/client/src/pages/SavedDrinks.js
     
       removeDrinkId(drinkId);
+=======
+      // upon success, remove drink's id from localStorage
+      removeBreweryId(breweryId);
+>>>>>>> c80978a5865f979ba8df28698a2290472abdad1a:brewers/client/src/pages/SavedBreweries.js
     } catch (err) {
       console.error(err);
     }
@@ -64,26 +74,26 @@ const SavedDrinks = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved drinks!</h1>
+          <h1>Viewing saved Breweries!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedDrinks.length
-            ? `Viewing ${userData.savedDrinks.length} saved ${userData.savedDrinks.length === 1 ? 'drink' : 'drinks'}:`
+          {userData.savedBreweries.length
+            ? `Viewing ${userData.savedBreweries.length} saved ${userData.savedBreweries.length === 1 ? 'brewery' : 'breweries'}:`
             : 'You have no saved drinks!'}
         </h2>
         <CardColumns>
-          {userData.savedDrinks.map((drink) => {
+          {userData.savedBreweries.map((brewery) => {
             return (
-              <Card key={drink.drinkId} border='dark'>
-                {drink.image ? <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' /> : null}
+              <Card key={brewery.breweryId} border='dark'>
+                {brewery.image ? <Card.Img src={brewery.image} alt={`The cover for ${brewery.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{driink.title}</Card.Title>
-                  <p className='small'>Authors: {drink.authors}</p>
-                  <Card.Text>{drink.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteDrink(drink.drinkId)}>
-                    Delete this Drink!
+                  <p className='small'>Authors: {brewery.authors}</p>
+                  <Card.Text>{brewery.description}</Card.Text>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBrewery(brewery.breweryId)}>
+                    Delete this Brewery!
                   </Button>
                 </Card.Body>
               </Card>
