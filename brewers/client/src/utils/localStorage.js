@@ -1,6 +1,6 @@
 export const getSavedBreweryIds = () => {
-  const savedBreweryIds = localStorage.getItem('saved_drinks')
-    ? JSON.parse(localStorage.getItem('saved_drinks'))
+  const savedBreweryIds = localStorage.getItem('saved_breweries')
+    ? JSON.parse(localStorage.getItem('saved_breweries'))
     : [];
 
   return savedBreweryIds;
