@@ -10,10 +10,10 @@ const SearchBreweries = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  // create state to hold saved drinkId values
+  // create state to hold saved breweryId values
   const [savedBreweryIds, setSavedBreweryIds] = useState(getSavedBreweryIds());
 
-  // set up useEffect hook to save `savedDrinkIds` list to localStorage on component unmount
+  // set up useEffect hook to save `savedBreweryIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveBreweryIds(savedBreweryIds);
@@ -39,7 +39,7 @@ const SearchBreweries = () => {
         authors: brewery.volumeInfo.authors || ['No Breweries to display'],
         title: brewery.volumeInfo.title,
         description: brewery.volumeInfo.description,
-        image: drink.volumeInfo.imageLinks?.thumbnail || '',
+        image: brewery.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
       setSearchedBreweries(breweryData);
@@ -52,7 +52,7 @@ const SearchBreweries = () => {
  
   const handleSaveBrewery = async (breweryId) => {
 
-    const breweryToSave = searchedBrewery.find((brewery) => brewery.breweryId === breweryId);
+    const breweryToSave = searchedBreweries.find((brewery) => brewery.breweryId === breweryId);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -67,7 +67,7 @@ const SearchBreweries = () => {
         throw new Error('Ops! Something went wrong!');
       }
 
-      // if drink successfully saves to user's account, save drink id to state
+      // if brewery successfully saves to user's account, save brewery id to state
       setSavedBreweryIds([...savedBreweryIds, breweryToSave.breweryId]);
     } catch (err) {
       console.error(err);
@@ -103,7 +103,7 @@ const SearchBreweries = () => {
 
       <Container>
         <h2>
-          {searchDrinks.length
+          {searchedBreweries.length
             ? `Viewing ${searchedBreweries.length} results:`
             : 'Search for a Brewery to begin'}
         </h2>
@@ -112,7 +112,7 @@ const SearchBreweries = () => {
             return (
               <Card key={brewery.breweryId} border='dark'>
                 {brewery.image ? (
-                  <Card.Img src={drink.image} alt={`The cover for ${brewery.title}`} variant='top' />
+                  <Card.Img src={brewery.image} alt={`The cover for ${brewery.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{brewery.title}</Card.Title>

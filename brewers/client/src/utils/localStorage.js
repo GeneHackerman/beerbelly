@@ -1,30 +1,30 @@
-export const getSavedDrinkIds = () => {
-  const savedDrinkIds = localStorage.getItem('saved_drinks')
+export const getSavedBreweryIds = () => {
+  const savedBreweryIds = localStorage.getItem('saved_drinks')
     ? JSON.parse(localStorage.getItem('saved_drinks'))
     : [];
 
-  return savedDrinkIds;
+  return savedBreweryIds;
 };
 
-export const saveDrinkIds = (drinkIdArr) => {
-  if (drinkIdArr.length) {
-    localStorage.setItem('saved_drinks', JSON.stringify(drinkIdArr));
+export const saveBreweryIds = (breweryIdArr) => {
+  if (breweryIdArr.length) {
+    localStorage.setItem('saved_breweries', JSON.stringify(breweryIdArr));
   } else {
-    localStorage.removeItem('saved_drinks');
+    localStorage.removeItem('saved_breweries');
   }
 };
 
-export const removeDrinkId = (drinkId) => {
-  const savedDrinkIds = localStorage.getItem('saved_drinks')
-    ? JSON.parse(localStorage.getItem('saved_drinks'))
+export const removeBreweryId = (breweryId) => {
+  const savedBreweryIds = localStorage.getItem('saved_breweries')
+    ? JSON.parse(localStorage.getItem('saved_breweries'))
     : null;
 
-  if (!savedDrinkIds) {
+  if (!savedBreweryIds) {
     return false;
   }
 
-  const updatedSavedDrinkIds = savedDrinkIds?.filter((savedDrinkId) => savedDrinkId !== drinkId);
-  localStorage.setItem('saved_drinks', JSON.stringify(updatedSavedDrinkIds));
+  const updatedSavedBreweryIds = savedBreweryIds?.filter((savedBreweryId) => savedBreweryId !== breweryId);
+  localStorage.setItem('saved_breweries', JSON.stringify(updatedSavedBreweryIds));
 
   return true;
 };

@@ -34,7 +34,7 @@ export const saveBrewery = (breweryData, token) => {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(drinkData),
+    body: JSON.stringify(breweryData),
   });
 };
 
@@ -49,6 +49,6 @@ export const deleteBrewery = (breweryId, token) => {
 };
 
 
-export const searchBrewery = (query) => {
+export const searchBreweries = (query) => {
   return fetch(`https://api.openbrewerydb.org/breweries?by_city=${query}`); // make a search to " xyz........"  api
 };

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import { getMe, deleteDrink } from '../utils/API';
+import { getMe, deleteBrewery } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeDrinkId } from '../utils/localStorage';
-const SavedDrinks = () => {
+import { removeBreweryId } from '../utils/localStorage';
+const SavedBreweries = () => {
   const [userData, setUserData] = useState({});
 
  
@@ -32,12 +32,8 @@ const SavedDrinks = () => {
     getUserData();
   }, [userDataLength]);
 
-<<<<<<< HEAD:brewers/client/src/pages/SavedDrinks.js
-  const handleDeleteDrink = async (drinkId) => {
-=======
   // create function that accepts the brewery's mongo _id value as param and deletes the brewery from the database
   const handleDeleteBrewery = async (breweryId) => {
->>>>>>> c80978a5865f979ba8df28698a2290472abdad1a:brewers/client/src/pages/SavedBreweries.js
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -53,13 +49,8 @@ const SavedDrinks = () => {
 
       const updatedUser = await response.json();
       setUserData(updatedUser);
-<<<<<<< HEAD:brewers/client/src/pages/SavedDrinks.js
-    
-      removeDrinkId(drinkId);
-=======
       // upon success, remove drink's id from localStorage
       removeBreweryId(breweryId);
->>>>>>> c80978a5865f979ba8df28698a2290472abdad1a:brewers/client/src/pages/SavedBreweries.js
     } catch (err) {
       console.error(err);
     }
@@ -89,7 +80,7 @@ const SavedDrinks = () => {
               <Card key={brewery.breweryId} border='dark'>
                 {brewery.image ? <Card.Img src={brewery.image} alt={`The cover for ${brewery.title}`} variant='top' /> : null}
                 <Card.Body>
-                  <Card.Title>{driink.title}</Card.Title>
+                  <Card.Title>{brewery.title}</Card.Title>
                   <p className='small'>Authors: {brewery.authors}</p>
                   <Card.Text>{brewery.description}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteBrewery(brewery.breweryId)}>
@@ -105,4 +96,4 @@ const SavedDrinks = () => {
   );
 };
 
-export default SavedDrinks;
+export default SavedBreweries;
