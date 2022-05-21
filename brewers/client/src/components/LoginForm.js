@@ -31,6 +31,7 @@ const LoginForm = () => {
       const { token, user } = await response.json();
       console.log(user);
       Auth.login(token);
+      localStorage.setItem('JWT', token)
     } catch (err) {
       console.error(err);
       setShowAlert(true);

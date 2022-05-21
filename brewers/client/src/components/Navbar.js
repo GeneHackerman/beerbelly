@@ -21,7 +21,11 @@ const AppNavbar = () => {
                 Search For drinks
               </Nav.Link>
               {/* if user is logged in show saved drinks and logout */}
-              {Auth.loggedIn() ? (
+             {/* 
+             {Auth.loggedIn() ? (
+            */}
+            {localStorage.getItem('JWT') != null ?
+            (
                 <>
                   <Nav.Link as={Link} to='/saved'>
                     See Your drinks
