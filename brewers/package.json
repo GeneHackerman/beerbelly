@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "bcrypt": "^5.0.1",
     "if-env": "^1.0.4",
     "nodemon": "^2.0.16"
   },
