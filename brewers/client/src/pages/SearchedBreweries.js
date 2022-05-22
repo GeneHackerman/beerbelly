@@ -33,13 +33,14 @@ const SearchBreweries = () => {
         throw new Error('Ops! Something went wrong!');
       }
 
-      const { items } = await response.json();
+
+      const items  = await response.json();
+      console.log(items)
       const breweryData = items.map((brewery) => ({
         breweryId: brewery.id,
-        authors: brewery.volumeInfo.authors || ['No Breweries to display'],
-        title: brewery.volumeInfo.title,
-        description: brewery.volumeInfo.description,
-        image: brewery.volumeInfo.imageLinks?.thumbnail || '',
+        brewery_type: brewery.brewery_type || ['No Breweries to display'],
+        name: brewery.name,
+        website_url: brewery.website_url
       }));
 
       setSearchedBreweries(breweryData);
@@ -55,24 +56,26 @@ const SearchBreweries = () => {
     const breweryToSave = searchedBreweries.find((brewery) => brewery.breweryId === breweryId);
 
     // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
-    try {
-      const response = await saveBrewery(breweryToSave, token);
-      if (!response.ok) {
-        throw new Error('Ops! Something went wrong!');
-      }
+    // try {
+    //   const response = await saveBrewery(breweryToSave, token);
+    //   if (!response.ok) {
+    //     throw new Error('Ops! Something went wrong!');
+    //   }
 
       // if brewery successfully saves to user's account, save brewery id to state
-      setSavedBreweryIds([...savedBreweryIds, breweryToSave.breweryId]);
-    } catch (err) {
-      console.error(err);
-    }
+    //   setSavedBreweryIds([...savedBreweryIds, breweryToSave.breweryId]);
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
+
+    
 
   return (
     <>
@@ -111,14 +114,14 @@ const SearchBreweries = () => {
           {searchedBreweries.map((brewery) => {
             return (
               <Card key={brewery.breweryId} border='dark'>
-                {brewery.image ? (
+                {/* {brewery.image ? (
                   <Card.Img src={brewery.image} alt={`The cover for ${brewery.title}`} variant='top' />
-                ) : null}
+                ) : null} */}
                 <Card.Body>
-                  <Card.Title>{brewery.title}</Card.Title>
-                  <p className='small'>Authors: {brewery.authors}</p>
-                  <Card.Text>{brewery.description}</Card.Text>
-                  {Auth.loggedIn() && (
+                  <Card.Title>{brewery.name}</Card.Title>
+                  <p className='small'>Authors: {brewery.brewery_type}</p>
+                  <Card.Link href={brewery.website_url}>{brewery.website_url}</Card.Link>
+                  {/* {Auth.loggedIn() && (
                     <Button
                       disabled={savedBreweryIds?.some((savedBreweryId) => savedBreweryId === brewery.breweryId)}
                       className='btn-block btn-info'
@@ -127,7 +130,7 @@ const SearchBreweries = () => {
                         ? 'This Brewery has already been saved to your Favorite Breweries!'
                         : 'Save this Brewery to your favorites!'}
                     </Button>
-                  )}
+                  )} */}
                 </Card.Body>
               </Card>
             );
