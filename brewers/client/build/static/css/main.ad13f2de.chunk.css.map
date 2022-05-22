@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AAIA,uBAME,sCACF,CAEA,OACE,eAAgB,CAChB,iBACF","file":"main.ad13f2de.chunk.css","sourcesContent":["body {\n  font-family: Arial, Helvetica, sans-serif\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: Arial, Helvetica, sans-serif\n}\n\n.small {\n  font-weight: 300;\n  font-style: italic;\n}\n"]}
