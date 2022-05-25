@@ -32,22 +32,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveDrink: async (parent, { input }, context) => {
+    saveBrewery: async (parent, { input }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedDrinks: input } },
+          { $addToSet: { savedBrewery: input } },
           { new: true, runValidators: true }
         );
         return updatedUser;
       }
       throw new AuthenticationError("Please login to continue.");
     },
-    removeDrink: async (parent, { drinkId }, context) => {
+    removeBrewery: async (parent, { breweryId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedDrinks: { drinkId: drinkId } } },
+          { $pull: { savedBreweries: { breweryId: breweryId } } },
           { new: true }
         );
         return updatedUser;
