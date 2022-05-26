@@ -5,8 +5,6 @@ import Auth from '../utils/auth';
 import { removeBreweryId } from '../utils/localStorage';
 const SavedBreweries = () => {
   const [userData, setUserData] = useState({});
-
- 
   const userDataLength = Object.keys(userData).length;
   useEffect(() => {
     const getUserData = async () => {

@@ -29,7 +29,6 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 import SearchBreweries from './pages/SearchedBreweries';
 import SavedBreweries from './pages/SavedBreweries';
 import Navbar from './components/Navbar';
