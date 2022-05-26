@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
+
 import { saveBrewery, searchBreweries } from '../utils/API';  
 import { saveBreweryIds, getSavedBreweryIds } from '../utils/localStorage';
 const SearchBreweries = () => {
@@ -82,6 +83,7 @@ const SearchBreweries = () => {
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Breweries!</h1>
+       
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -91,7 +93,7 @@ const SearchBreweries = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a Brewery'
+                  placeholder='Enter a City'
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -119,7 +121,7 @@ const SearchBreweries = () => {
                 ) : null} */}
                 <Card.Body>
                   <Card.Title>{brewery.name}</Card.Title>
-                  <p className='small'>Authors: {brewery.brewery_type}</p>
+                  <p className='small'>Brewery Type: {brewery.brewery_type}</p>
                   <Card.Link href={brewery.website_url}>{brewery.website_url}</Card.Link>
                   {/* {Auth.loggedIn() && (
                     <Button

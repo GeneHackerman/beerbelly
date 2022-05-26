@@ -1,7 +1,6 @@
 const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Brewery {
-    authors: [String]
     description: String
     breweryId: String!
     image: String
@@ -12,15 +11,13 @@ const typeDefs = gql`
     _id: ID
     username: String!
     email: String!
-    breweryCount: Int
-    savedBreweries: [Brewery]
+    
   }
   type Auth {
     token: ID!
     user: User
   }
   input SavedBreweryInput {
-    authors: [String]
     title: String
     description: String
     breweryId: String

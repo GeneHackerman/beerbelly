@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {  // if we're in production, serve c
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.use(routes);
+//app.use(routes);
 db.once('open', () => {
   app.listen(PORT, () => console.log(`We are now live on localhost:${PORT}`));
 });

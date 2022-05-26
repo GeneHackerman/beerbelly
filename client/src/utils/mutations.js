@@ -8,14 +8,7 @@ export const LOGIN_USER = gql`
         _id
         username
         email
-        drinkCount
-        savedDrinks {
-            drinkId
-            title
-            description
-            image
-            link
-        }
+      
       }
     }
   }
@@ -29,14 +22,6 @@ export const ADD_USER = gql`
         _id
         username
         email
-        drinkCount
-        savedDrinks {
-            drinkId
-            title
-            description
-            image
-            link
-        }
       }
     }
   }
@@ -48,7 +33,7 @@ export const SAVE_DRINK = gql `
           _id
           username
           email
-          savedDrinks {
+          savedbreweries {
               drinkId
               image
               description

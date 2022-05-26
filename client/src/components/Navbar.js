@@ -12,13 +12,13 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Google drinks Search
+           
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
-                Search For drinks
+                Search For Breweries
               </Nav.Link>
               {/* if user is logged in show saved drinks and logout */}
              {/* 
@@ -28,7 +28,7 @@ const AppNavbar = () => {
             (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                    See Your drinks
+                    See Your breweries
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
