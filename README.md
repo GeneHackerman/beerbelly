@@ -5,11 +5,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Screenshot: 
-
-<img width="934" alt="Screen Shot 2022-05-26 at 7 06 23 PM" src="https://user-images.githubusercontent.com/65464431/170606155-56dfcef0-df71-41e1-bb4c-79c76a81e37a.png">
-
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -37,42 +32,57 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# Brewery
+  
+  ## Table of Contents
+  * [Description](#description)
+  * [Technologies](#technologies)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributing](#contributing)
+  * [Images](#images)
+  * [Questions](#questions)
+  * [Credits](#credits)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ## Description
+  A beer brewery search engine that searches breweries in the U.S. via city. 
+  
+  https://vast-basin-70131.herokuapp.com/
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ## Technologies
+* Express.js
+* GraphQL
+* APIs
+* Heroku
+* React
+* CSS
+* JavaScript
+* Bcrypt
+* Apollo Client Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ## Installation
+  Clone the repo and install the REACT package as well as Express, Bcrypt, Nodemon, and Apollo.  
 
-## Learn More
+  ## Usage
+  Basic beer brewery search engine using REACT that allows for favoriting searched breweries after creating and logging in with a username.  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  
+  ## Contributing
+  Others can contribute by simply emailing any of the key contributors to the project and putting up any issues to the repo. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ## Images 
+  <img width="934" alt="Screen Shot 2022-05-26 at 7 06 23 PM" src="https://user-images.githubusercontent.com/65464431/170606155-56dfcef0-df71-41e1-bb4c-79c76a81e37a.png">
 
-### Code Splitting
+  ## Questions
+  Have questions about this project?  
+  GitHub: https://github.com/GeneHackerman/beerbelly 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  Members Github accounts:
+  * Rafael Arias https://github.com/GeneHackerman 
+  * Mariana Marquez https://github.com/mmvrstudio
+  * Cooper Smith https://github.com/cssmith134
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ## Credits
+  Rafael Arias, Mariana Marquez, and Cooper Smith
+  
